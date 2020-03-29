@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12">
+      <h1>Incluir Foto para o album: {{album?.name}}</h1>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" class="form-control" placeholder="Digite o nome do novo álbum" [(ngModel)]="name">
+      </div>
+      <div class="form-group">
+          <label for="file_name">Imagem:</label>
+          <input type="file" id="file_name" class="form-control" (change)="handleFile($event.target.files[0])" >
+      </div>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary" (click)="upload()"> Fazer upload</button>
+        <button class="btn btn-secondary" [routerLink]="['albums']"> Voltar</button>
+    </div>
+    <br>
+    <br>
+    <div class="card col-md-3" *ngFor="let photo of photos">
+        <div class="card-header">
+                {{album?.name}}
+            <button type="button" class="close" (click)="delete(album.id,photo.id)" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="card-body">
+            <figure class="figure">
+                <img [src]="photo.photo_url" class="figure-img img-fluid rounded" [alt]="photo.name">
+                <figcaption class="figure-caption">{{photo.name}} </figcaption>
+            </figure>
+        </div>
+      </div> 
+  </div>
